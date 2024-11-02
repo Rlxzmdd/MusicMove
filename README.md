@@ -17,27 +17,27 @@
 假设 `MusicMove` 项目存放在 `/vol1/1000/AppData/MusicMove` 路径下，基本目录结构如下：
 ```
 /vol1/1000/AppData/MusicMove/
-|– move.sh               # 主脚本文件
+|– MusicMusicMove.sh               # 主脚本文件
 |– ncmdump               # ncmdump 工具路径
 ```
 
 ## 使用说明
 ### 1. 脚本参数说明
-`move.sh` 脚本支持以下参数：
+`MusicMove.sh` 脚本支持以下参数：
 - `-s`：待检测目录路径
 - `-o`：输出目录路径
 - `-n`：`ncmdump` 工具的调用路径
 - `-d`：是否删除源文件 (`true` 或 `false`)
 
 ### 2. 脚本执行示例
-在命令行中运行以下命令以执行 `move.sh` 脚本，自动移动和处理音乐文件：
+在命令行中运行以下命令以执行 `MusicMove.sh` 脚本，自动移动和处理音乐文件：
 
 ```bash
-./move.sh -s "/vol4/1000/Music/Cache" -o "/vol4/1000/Music/Netease" -n "/vol1/1000/AppData/MusicMove/ncmdump" -d "true"
+./MusicMove.sh -s "/vol4/1000/Music/Cache" -o "/vol4/1000/Music/Netease" -n "/vol1/1000/AppData/MusicMove/ncmdump" -d "true"
 ```
 
 ### 3. 配置定时任务
-要每五分钟执行一次 `move.sh`，可以通过 `cron` 配置定时任务：
+要每五分钟执行一次 `MusicMove.sh`，可以通过 `cron` 配置定时任务：
 
 ```bash
 crontab -e
@@ -46,7 +46,7 @@ crontab -e
 在 `crontab` 文件中添加以下行：
 
 ```bash
-*/5 * * * * /vol1/1000/AppData/MusicMove/move.sh -s "/vol4/1000/Music/Cache" -o "/vol4/1000/Music/Netease" -n "/vol1/1000/AppData/MusicMove/ncmdump" -d "true" >> /var/log/move.log 2>&1
+*/5 * * * * /vol1/1000/AppData/MusicMove/MusicMove.sh -s "/vol4/1000/Music/Cache" -o "/vol4/1000/Music/Netease" -n "/vol1/1000/AppData/MusicMove/ncmdump" -d "true" >> /var/log/move.log 2>&1
 ```
 
 此配置将每五分钟自动运行脚本，并将输出重定向至 `/var/log/move.log`。
@@ -71,7 +71,7 @@ journalctl | grep "MusicMove"
 ```
 
 ## 输出示例
-每次执行 `move.sh` 脚本，将生成一行统计日志，包含以下信息：
+每次执行 `MusicMove.sh` 脚本，将生成一行统计日志，包含以下信息：
 
 - **待检测目录中的总文件数**
 - **.mp3 文件数**
